@@ -28,3 +28,8 @@ def test_create_item_with_valid_name_returns_created_item() -> None:
 def test_create_item_with_blank_name_is_rejected() -> None:
     response = client.post("/api/items", json={"name": "   ", "description": "should be rejected"})
     assert response.status_code == 422
+
+
+def test_create_item_with_empty_name_is_rejected() -> None:
+    response = client.post("/api/items", json={"name": "", "description": "should be rejected"})
+    assert response.status_code == 422
